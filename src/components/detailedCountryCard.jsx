@@ -11,7 +11,7 @@
 
 // 	// const [ cardToggleOn, setCardToggleOn ] = useState(false)
 
-// 	const countries = useContext( CountriesContext );
+// 	// const countries = useContext( CountriesContext );
 
 // 	return (
 // 	    <div className="detailedCountryCard">

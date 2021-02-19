@@ -14,12 +14,26 @@ function App() {
 
   const findCountry = (name) => {
     setCountries((prevState) => {
-      const singleCountry = prevState.filter(country => country.name === name)
+      const singleCountry = prevState.filter((country) => {
+        let result = country.name
+          .toUpperCase()
+          .localeCompare(name.toUpperCase());
+        if (result === 0) {
+        }
+        return result === 0;
+      });
 
-      console.log(singleCountry)
+      return singleCountry;
+    });
+  }
 
-        return singleCountry
-    })
+  const filterByRegion = (region) => {
+    setCountries((prevState) => {
+      const regionCountries = prevState.filter((country) => country.region === region
+      );
+
+      return regionCountries;
+    });
   }
 
   useEffect(() => {
@@ -32,7 +46,7 @@ function App() {
   
   
   return (
-    <CountriesContext.Provider value={{countries, findCountry}} >
+    <CountriesContext.Provider value={{countries, findCountry, filterByRegion}} >
         <div className="App">
           <Header />
           <Gallery />

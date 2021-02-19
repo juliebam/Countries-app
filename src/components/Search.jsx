@@ -9,11 +9,6 @@ function Search() {
 
     const handleChange = (event) => setName(event.target.value)
 
-    // const capitalize = () => {
-    //     let capitalized = name[0].toUpperCase() + name.slice(1);
-    //     setName(capitalized)
-    // }
-
     const handleSubmit = (event) => {
         event.preventDefault();
         findCountry(name)
@@ -23,9 +18,8 @@ function Search() {
 	return (
 		<form action="" className="search">
             <input type="text" value={name} onChange={handleChange} placeholder="search by country name"/>
-            <button type="submit" onClick={handleSubmit
-            }>
-              Search</button>
+            <button type="submit" onClick={handleSubmit}>Search
+            </button>
         </form>
 	)
 }

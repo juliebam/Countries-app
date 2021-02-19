@@ -4,6 +4,7 @@ import React, {useContext} from 'react';
 import { CountriesContext } from '../App.js'
 
 import CountryCard from "./CountryCard.jsx"
+import FilterByRegion from './FilterByRegion.jsx';
 
 import Search from "./Search.jsx"
 
@@ -16,6 +17,8 @@ function Gallery() {
 	return (
 	    <div className="gallery">
 			<Search />
+			<FilterByRegion />
+		
 			{
 				countries.map((country, i) => 
 					<CountryCard country={country} key={i} />
