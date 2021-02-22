@@ -29,12 +29,13 @@ function App() {
 
   const filterByRegion = (region) => {
     setCountries((prevState) => {
-      const regionCountries = prevState.filter((country) => country.region === region
+      const regionCountries = prevState.filter(country => country.region === region
       );
 
       return regionCountries;
     });
   }
+
 
   useEffect(() => {
     fetch('https://restcountries.eu/rest/v2/all')

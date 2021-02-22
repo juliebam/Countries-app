@@ -10,7 +10,7 @@ function Search() {
     const handleChange = (event) => setName(event.target.value)
 
     const handleSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault()
         findCountry(name)
         setName('')
     }
