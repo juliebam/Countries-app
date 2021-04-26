@@ -1,6 +1,18 @@
 import React, { useState, useContext } from 'react';
 import { CountriesContext } from '../App.js';
 
+import styled from 'styled-components';
+
+const SearchBar = styled.form`
+  & > input {
+      padding: 5px;
+  }
+
+  & > button {
+      display: none;
+  }
+`
+
 function Search() {
 
     const [name, setName] = useState('')
@@ -10,17 +22,17 @@ function Search() {
     const handleChange = (event) => setName(event.target.value)
 
     const handleSubmit = (event) => {
-        event.preventDefault()
+        event.preventDefault();
         findCountry(name)
         setName('')
     }
 
 	return (
-		<form action="" className="search">
-            <input type="text" value={name} onChange={handleChange} placeholder="search by country name"/>
+		<SearchBar>
+            <input type="text" value={name} onChange={handleChange} placeholder=" Search by country name"/>
             <button type="submit" onClick={handleSubmit}>Search
             </button>
-        </form>
+        </SearchBar>
 	)
 }
 
