@@ -11,6 +11,7 @@ const Button = styled.button`
   border: none;
   box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
   font-size: 1.5rem;
+  cursor: pointer;
 `
 
 function BackButton() {

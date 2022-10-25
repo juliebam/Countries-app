@@ -6,6 +6,7 @@ import styled from 'styled-components';
 const SearchBar = styled.form`
   & > input {
       padding: 5px;
+      width: 120%;
   }
 
   & > button {

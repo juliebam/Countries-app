@@ -47,7 +47,10 @@ const CardInfoDetails= styled.div`
 function CountryCard(props) {
 
 	const { country } = props;
-	const { name, flag, population, region, capital} = country;
+	const { name, flags, population, region, capital} = country;
+	const { common } = name;
+	const { png } = flags;
+
 
 	// console.log(props)
 
@@ -56,20 +59,18 @@ function CountryCard(props) {
 	const handleClick = (event) => {
 		event.preventDefault();
 		const countryName = country.name;
-		showDetailedCountryCard(countryName)
+		const countryCommonName = countryName.common;
+		showDetailedCountryCard(countryCommonName);
 
-		// console.log(`it works: ${countryName}`)
 	}
 
-	//comma separation for population number
-	// const popNumber = population.toLocaleString();
-	// console.log(popNumber)
+
 
 	return (
 		<CountryCardStyle onClick={handleClick}>
-			<FlagImage src={flag} alt=""/>
+			<FlagImage src={png} alt=""/>
 			<CardInfo>
-				<CardInfoName>{name}</CardInfoName>
+				<CardInfoName>{common}</CardInfoName>
 				<CardInfoDetails>
 					<p><span>Population:</span> {population}</p>
 					<p><span>Region: </span> {region}</p>

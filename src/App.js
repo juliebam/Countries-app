@@ -34,7 +34,8 @@ function App() {
   const findCountry = (name) => {
     setFilteredCountries((prevState) => {
       const singleCountry = prevState.filter((country) => {
-        let result = country.name
+        let nameOfCountry = country.name;
+        let result = nameOfCountry.common
         .toUpperCase()
         .localeCompare(name.toUpperCase());
         if (result === 0) {
@@ -60,9 +61,10 @@ function App() {
 
   
   const showDetailedCountryCard = (countryName) => {
-    const countryWithName = countries.filter((country) => country.name === countryName);
-    
+    const countryWithName = countries.filter((country) => country.name.common === countryName);
+    console.log(countryWithName)
     const borders = countryWithName[0].borders;
+    console.log(borders)
     
     const countryBorderNames = [];
     
@@ -96,10 +98,10 @@ function App() {
     // if not:
 
     if (localStorage.length === 0) {
-      fetch('https://restcountries.eu/rest/v2/all')
+      fetch('https://restcountries.com/v3.1/all')
       .then(results => results.json())
       .then((data) => {
-        // console.log(data)
+        console.log(data)
         const updatedData = data.map(item => {
           const population = item.population.toLocaleString();
           item.population = population;

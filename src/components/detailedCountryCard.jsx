@@ -10,10 +10,22 @@ const DetailedCard = styled.div`
   	
 `
 
+const FlexContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+	
+
+
+
+
+`
+
 const FlagDetailedCard = styled.div`
 	img {
-		width: 300px;
-		margin-top: 4%;
+		width: 400px;
+		margin-top: 12%;
 	}
 `
 
@@ -35,54 +47,101 @@ const AdditionalInfo = styled.div`
 		font-weight: bold;
 	}
 
-	& > p > ul {
+	& > nav > span {
+		font-size: 1.5rem;
+		font-weight: bold;
+	}
+
+
+	& >p:first-child {
+		padding-top: 18%;
+	}
+`
+
+const BorderContries = styled.div`
+	padding-top: 1%;
+	& > p > span {
+		font-size: 1.5rem;
+		font-weight: bold;
+	}
+
+	& > nav > span {
+		font-size: 1.5rem;
+		font-weight: bold;
+	}
+
+	& > nav > ul {
 		list-style: none;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
 		> li {
+			border: 1px solid grey;
+			width: 200px;
+			padding: 5px 10px;
+			border-radius: 5%;
+			text-align: center;
 			
 		}
 	}
+
 `
 
 
 function DetailedCountryCard(props) {
-	// console.log(props)
 
 	const { detailedCountry } = props;
-	const { nativeName, name, flag, population, region, subregion, capital, topLevelDomain, currencies, languages, borderWithFullNames} = detailedCountry;
-	// console.log(detailedCountry)
-	
-	const currency = currencies.map(currency => currency.name)
-	// console.log(currency)
-	
-	const language = languages.map(language => language.name)
-	// console.log(countryNamesFromCode)
+	const { name, flags, population, region, subregion, capital, topLevelDomain, currencies, languages, borderWithFullNames} = detailedCountry;
+	const { common, official, nativeName } = name;
+	const { png, svg } = flags;
 
-	// const popNumber = population.toLocaleString();
-	// console.log(popNumber)
+	const language = Object.values(languages);
+	
+	const countryNativeName = nativeName[Object.keys(nativeName)[0]]
+	const nativeNameValue = Object.values(countryNativeName)[0];
+
+	const currencyValues = Object.values(currencies)
+
+
+
+
 
 
 	return (
 	    <DetailedCard>
 			<BackButton />
-			 <FlagDetailedCard>
-				<img src={flag} alt=""/>
-			</FlagDetailedCard> 
-			 <InfoDetailedCard>
-				<p>{name}</p>
-				<p><span>Native Name:</span> {nativeName} </p>
-				<p><span>Population:</span> {population}</p>
-				<p><span>Region:</span> {region}</p>
-				<p><span>Subregion:</span> {subregion}</p>
-				<p><span>Capital:</span> {capital}</p>
-			 </InfoDetailedCard> 
-			 <AdditionalInfo>
-				<p><span>Top Level Domain:</span> {topLevelDomain}</p>
-				<p><span>Currencies:</span> {currency.map((string) => <ul><li>{string} </li></ul>)}</p>
-				<p><span>Languages:</span> {language.map(string => <ul><li>{string} </li></ul>)}</p>
-				<p><span>Border Countries:</span> {
-				borderWithFullNames.length === 0 ? <span>N/A</span> :
-				borderWithFullNames.map(string => <ul><li>{string} </li></ul>)}</p>
-			 </AdditionalInfo>
+			<FlexContainer>
+				<FlagDetailedCard>
+					<img src={png} alt=""/>
+				</FlagDetailedCard> 
+				<InfoDetailedCard>
+					<p>{common}</p>
+					<p><span>Official Name:</span> {official} </p>
+					<p><span>Native Name:</span> {nativeNameValue} </p>
+					<p><span>Population:</span> {population}</p>
+					<p><span>Region:</span> {region}</p>
+					<p><span>Subregion:</span> {subregion}</p>
+					<p><span>Capital:</span> {capital}</p>
+				</InfoDetailedCard> 
+				<AdditionalInfo>
+					<p><span>Top Level Domain:</span> {topLevelDomain}</p>
+					<nav><span>Currencies:</span> <ul>{currencyValues.map((value,index) => <li key={index}>{value.name}</li>)}</ul></nav>
+					<nav><span>Languages:</span> <ul>{language.map((value, index) => <li key={index}>{value} </li>)}</ul></nav>
+				</AdditionalInfo>
+			</FlexContainer>
+			<BorderContries>
+				<nav><span>Border Countries:</span>
+				    <ul>
+					{
+					borderWithFullNames.length === 0 ? <span>N/A</span> :
+					borderWithFullNames.map((string, index) => <li key={index}>{string}</li>)
+					}
+					</ul>
+				</nav>
+
+			</BorderContries>
         </DetailedCard>
 	)
 }
