@@ -72,18 +72,21 @@ const BorderContries = styled.div`
 
 	& > nav > ul {
 		list-style: none;
-		display: flex;
+		display: inline-flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between;
 
+
 		> li {
 			border: 1px solid grey;
-			width: 200px;
+			min-width:200px;
 			padding: 5px 10px;
 			border-radius: 5%;
 			text-align: center;
-			
+			fflex-basis: 0;
+			margin: 10px;
+			align-self: flex-start
 		}
 	}
 

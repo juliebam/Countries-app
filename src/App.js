@@ -64,7 +64,7 @@ function App() {
     const countryWithName = countries.filter((country) => country.name.common === countryName);
     console.log(countryWithName)
     const borders = countryWithName[0].borders;
-    console.log(borders)
+
     
     const countryBorderNames = [];
     
